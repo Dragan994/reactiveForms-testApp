@@ -1,0 +1,116 @@
+<app-navigation [pageTitle]='title' ></app-navigation>
+<div class="wrapper-center"> 
+    <div class="wrapper-inner" >
+        
+        
+        <form novalidate
+            (ngSubmit)="submit()"
+            [formGroup]='userForm'>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label for="firstNameId">First Name</mat-label>
+                <input  matInput
+                type="text"
+                id="firstNameId"
+                        formControlName='firstName'>
+                        <mat-error *ngIf="userForm.get('firstName').errors?.required">
+                            First Name is <strong>required</strong>
+                          </mat-error>
+                          <mat-error *ngIf="userForm.get('firstName').errors?.minlength">
+                              Name is too short
+                            </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput
+                        formControlName='lastName'>
+                        <mat-error *ngIf="userForm.get('lastName').errors?.required">
+                            Last Name is <strong>required</strong>
+                          </mat-error>
+                          <mat-error *ngIf="userForm.get('lastName').errors?.maxlength">
+                              Name is too long
+                            </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div formGroupName='emailGroup'>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput
+                    formControlName='email'>
+                    <mat-error *ngIf="userForm.get('emailGroup').get('email').errors?.required">
+                        Email is <strong>required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="userForm.get('emailGroup').get('email').errors?.email">
+                         Enter a <strong>valid</strong> email
+                        </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirm Email</mat-label>
+                    <input matInput
+                    formControlName='confirmEmail'>
+                    <mat-error *ngIf="userForm.get('emailGroup.confirmEmail').errors?.required">
+                        Confirm your email
+                      </mat-error>
+                      <mat-error *ngIf="userForm.get('emailGroup.confirmEmail').errors?.email">
+                         Enter a <strong>valid</strong> email
+                        </mat-error>
+                        <mat-error *ngIf="userForm.get('emailGroup.confirmEmail').errors?.match">
+                           Emails dont match
+                          </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div formGroupName='passwordGroup'>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput
+                    type="password"
+                    formControlName='password'>
+                    <mat-error *ngIf="userForm.get('passwordGroup').get('password').errors?.required">
+                        Password is <strong>required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="userForm.get('passwordGroup').get('password').errors?.passwordShort">
+                          Password is <strong>too short</strong>
+                        </mat-error>
+                        <mat-error *ngIf="userForm.get('passwordGroup').get('password').errors?.passwordNotSafe">
+                            Password is <strong>not safe</strong> include @ ,!
+                          </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput
+                    type="password"
+                    formControlName='confirmPassword'>
+                    <mat-error *ngIf="userForm.get('passwordGroup').get('confirmPassword').errors?.required">
+                        Confirm your password
+                      </mat-error>
+                      <mat-error *ngIf="userForm.get('passwordGroup.confirmPassword').errors?.passwordShort">
+                          Password is <strong>too short</strong>
+                        </mat-error>
+                      <mat-error *ngIf="userForm.get('passwordGroup.confirmPassword').errors?.match">
+                          Passwords dont <strong>match</strong>
+                        </mat-error>
+                </mat-form-field>                
+            </div>
+        </div>
+
+        <div class="wrapper-center">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid">Register</button>
+        </div>
+    </form>
+
+        <p>
+            <a routerLink="/login">Have account - Log In</a>
+        </p>
+    </div>
+</div>

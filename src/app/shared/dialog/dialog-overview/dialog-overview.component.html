@@ -1,0 +1,17 @@
+
+<div *ngIf='!errMessage'>
+    <h1 mat-dialog-title>Welcome {{user.firstName}}</h1>
+    <div mat-dialog-content>
+        <h2>Go check your profile</h2>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-button  cdkFocusInitial (click)='proceed()'>Ok</button>
+    </div>
+</div>
+<div *ngIf='errMessage'>
+    <h1 mat-dialog-title>Wrong email, try again.</h1>
+    <div  mat-dialog-actions *ngIf='errMessage'>
+        <button  mat-button  cdkFocusInitial (click)='onWrongMail()'>Ok</button>
+    </div>
+</div>

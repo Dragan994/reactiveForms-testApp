@@ -1,0 +1,25 @@
+<app-navigation [pageTitle]='title'></app-navigation>
+
+<div class="wrapper-center">
+
+    <div class="wrapper-inner" *ngIf='userData'>
+            <div>
+                <label for="">First Name: </label>
+                <span>{{userData.firstName}}</span>
+            </div>
+            <div>
+                <label for="">Last Name: </label>
+                <span>{{userData.lastName}}</span>
+            </div>
+            <div>
+                <label for="">Email: </label>
+                
+                    <span>{{userData.email}}</span>
+
+            </div>
+    </div>
+    <div class="not-logged-in" *ngIf='!userData'>
+         <h2> <a routerLink="/login">Log In</a> if you have account or <a routerLink="/register">Register</a>.</h2>
+    </div>
+
+</div>
